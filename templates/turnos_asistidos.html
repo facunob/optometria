@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block body %}
+<div>
+  {% if turnos_mes %}
+  <h4>Turnos asistidos de este mes:</h4>
+  {% for turno in turnos_mes %}
+  <div class="col-10 shadow p-3 mb-5 rounded ml-2">
+    <p>{{turno.paciente}}</p>
+    <p>
+      Con el especialista: {{turno.medico.nombres}} {{turno.medico.apellidos}}
+    </p>
+    <p>Fecha:</p>
+    <p>{{turno.fecha}}</p>
+  </div>
+  {% endfor %} {% else %}
+  <h3>No hay turnos asistidos este mes</h3>
+  {% endif %}
+  <hr />
+  {% if turnos_semana %}
+  <h4>Turnos asistidos de esta última semana:</h4>
+  {% for turno in turnos_semana %}
+  <div class="col-10 shadow p-3 mb-5 rounded ml-2">
+    <p>{{turno.paciente}}</p>
+    <p>
+      Con el especialista: {{turno.medico.nombres}} {{turno.medico.apellidos}}
+    </p>
+    <p>Fecha:</p>
+    <p>{{turno.fecha}}</p>
+  </div>
+  {% endfor %} {% else %}
+  <h3>No hay turnos asistidos esta última semana</h3>
+  {% endif %}
+</div>
+{% endblock %}

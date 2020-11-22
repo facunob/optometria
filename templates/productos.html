@@ -1,0 +1,34 @@
+{% extends 'base.html' %}{% block body %}
+
+<!---------------------->
+
+{% if productos %}
+<!---------------------->
+<div class="col-12">
+  {% for key, value in productos.items %}
+  <div class="col-12 mb-2 shadow p-3 mb-5 rounded">
+    <p>Producto: {{key}}</p>
+    <hr />
+    <p>Cantidad vendidos:{{value}}</p>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No hubo ventas de productos</p>
+{% endif %}
+<!---------------------->
+{% if lentes %}
+<!---------------------->
+<div class="col-12">
+  {% for key, value in lentes.items %}
+  <div class="col-12 mb-2 shadow p-3 mb-5 rounded">
+    <p>Lente: {{key}}</p>
+    <hr />
+    <p>Cantidad vendidos:{{value}}</p>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No hubo ventas de lentes</p>
+
+{% endif %} {% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}{% block body %} {% for turno in object_list %}
+<div class="col-10 shadow p-3 mb-5 rounded ml-2">
+  <p>{{turno.paciente}}</p>
+  <p>
+    Con el especialista: {{turno.medico.nombres}} {{turno.medico.apellidos}}
+  </p>
+  <p>Fecha: {{turno.fecha}}</p>
+  <hr />
+  <a href="{% url 'eliminar_turno' turno.id %}" class="btn btn-danger mt-1"
+    >Eliminar</a
+  >
+  <a href="{% url 'modificar_turno' turno.id %}" class="btn btn-primary mt-1"
+    >Modificar</a
+  >
+  <a href="{% url 'marcar_asistencia' turno.id %}" class="btn btn-success mt-1"
+    >Marcar asistencia</a
+  >
+</div>
+{% endfor %} {% endblock %}

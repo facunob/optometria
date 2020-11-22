@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block body %} {% for x in object_list %}
+<div class="col-8 mt-2 shadow p-3 mb-5 rounded">
+  <p>
+    Paciente: <strong> {{x.nombre}}, {{x.apellido}} </strong> [Dni:
+    <strong>{{x.dni}}</strong>]
+  </p>
+  <p>Obra social: <strong>{{x.obra_social}}</strong></p>
+</div>
+{% endfor %} {% endblock %}

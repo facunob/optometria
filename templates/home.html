@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block body %}
+<div class="alert alert-success mt-4 col-10" role="alert">
+  <h4 class="alert-heading">Bienvenido/a!</h4>
+  <p>{{request.user.nombres}} {{request.user.apellidos}}</p>
+
+  <hr />
+  <p class="mb-0">{{request.user.rol}}</p>
+</div>
+{% endblock %}

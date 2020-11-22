@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% block body %}
+
+<form
+  method="POST"
+  action="{% url 'agregar_paciente' %}"
+  class="col-10 shadow p-3 mb-5 rounded"
+>
+  {% csrf_token %} {{form.as_p}}
+  <button type="submit" class="btn btn-success">Agregar</button>
+</form>
+
+{% endblock %}

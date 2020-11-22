@@ -1,0 +1,50 @@
+{% extends 'base.html' %}{% block body %}
+<div>
+  <form action="{% url 'ventas' %}" method="post" class="col-12">
+    {% csrf_token %}
+    <select name="mes">
+      <option value="1">Enero</option>
+      <option value="02">Febrero</option>
+      <option value="3">Marzo</option>
+      <option value="4">Abril</option>
+      <option value="5">Mayo</option>
+      <option value="6">Junio</option>
+      <option value="7">Julio</option>
+      <option value="8">Agosto</option>
+      <option value="9">Septiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
+    </select>
+    <select name="anio">
+      <option>2020</option>
+      <option>2021</option>
+      <option>2022</option>
+      <option>2023</option>
+      <option>2024</option>
+      <option>2025</option>
+    </select>
+    <button class="btn btn-primary" type="submit">Filtrar</button>
+  </form>
+
+  <!---------------------->
+  <h3 class="col-12">Ventas del mes filtrado (por defecto mes actual):</h3>
+
+  {% if pedidos %}
+  <!---------------------->
+  <div class="col-12">
+    {% for x in pedidos %}
+    <div class="col-10 mb-2 shadow p-3 mb-5 rounded">
+      <p>Venta de: ${{x.sub_total}}</p>
+      <hr />
+      <p>Vendedor: {{x.vendedor.nombres}},{{x.vendedor.apellidos}}</p>
+      <p>{{x.fecha}}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No hubo pedidos este mes</p>
+
+  {% endif %}
+</div>
+{% endblock %}

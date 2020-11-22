@@ -1,0 +1,27 @@
+{% extends 'base.html' %}{% block body %}
+
+<form
+  action="{% url 'listado_historial_medico' historialMedico.first.paciente.id %}"
+  method="post"
+  class="col-10 mb-2 shadow p-3 mb-5 rounded"
+>
+  {% csrf_token %}
+  <textarea name="obs" rows="4" class="col-12 p-4 mb-2"></textarea>
+
+  <button type="submit" class="btn btn-primary">
+    Agregar nueva observación
+  </button>
+</form>
+{% if historialMedico %}
+<!---------------------->
+<div class="col-10">
+  {% for hist in historialMedico %}
+  <div class="mb-2 shadow p-3 mb-5 rounded">
+    <p>{{hist.fecha}}</p>
+    <hr />
+    <p>{{hist.observaciones}}</p>
+  </div>
+  {% endfor %}
+</div>
+
+{% endif %} {% endblock %}

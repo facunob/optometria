@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block body %} {% for pedido in pedidos %}
+<div class="col-8 mt-2 shadow p-3 mb-5 rounded">
+  <p>
+    Pedido de:
+    <strong> {{pedido.paciente.nombre}}, {{pedido.paciente.apellido}} </strong>
+  </p>
+  <a href="{% url 'detalle_pedido_taller' pedido.id %}" class="btn btn-primary"
+    >Ver y editar</a
+  >
+</div>
+{% endfor %} {% endblock %}

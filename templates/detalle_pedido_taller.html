@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% block body %}
+
+<div class="col-8 shadow p-3 mb-5 rounded">
+  <p>
+    Pedido de:
+    <strong> {{pedido.paciente.nombre}}, {{pedido.paciente.apellido}} </strong>
+  </p>
+  <hr />
+  {% if pedido.productos %}
+  <strong>Productos en el pedido:</strong>
+  {% for prod in pedido.productos.all %}
+  <p>{{prod.nombre}}</p>
+  {% endfor %} {% endif %} {% if pedido.lentes %}
+  <strong>Lentes en el pedido:</strong>
+  <!---------->
+  {% for len in pedido.lentes.all %}
+  <p>{{len.nombre}}</p>
+  {% endfor %} {% endif %}
+  <!---------->
+  <hr />
+  <p>Estado: <strong>{{pedido.estado}}</strong></p>
+  <form action="{% url 'detalle_pedido_taller' pedido.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary mt-2">Finalizar pedido</button>
+  </form>
+</div>
+
+{% endblock %}

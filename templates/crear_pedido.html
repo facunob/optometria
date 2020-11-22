@@ -1,0 +1,34 @@
+{% extends 'base.html' %}{% block body %}
+
+<form method="post" action="{% url 'crear_pedido' %}" class="col-10">
+  {% csrf_token %}
+  <label for="paciente">Paciente:</label>
+  <select name="paciente" class="form-control">
+    {% for paciente in pacientes %}
+    <option>{{paciente.nombre}}</option>
+    {% endfor %}
+  </select>
+  <label class="mt-2">Productos:</label>
+  <select multiple class="form-control" name="productos">
+    {% for prod in productos %}
+    <option>{{prod.nombre}}</option>
+    {% endfor %}
+  </select>
+  <label class="mt-2">Lentes:</label>
+  <select multiple class="form-control" name="lentes">
+    {% for len in lentes %}
+    <option>{{len.nombre}}</option>
+    {% endfor %}
+  </select>
+  <label>Método de pago:</label>
+  <select name="metodo_pago" class="form-control">
+    <option>Tarjeta de crédito</option>
+    <option>Tarjeta de débito</option>
+    <option>Billetera virtual</option>
+    <option>Efectivo</option>
+  </select>
+
+  <button type="submit" class="btn btn-success mt-1">Crear pedido</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}{% block body %}
+
+<div class="col-8 shadow p-3 mb-5 rounded">
+  <p>
+    Pedido de:
+    <strong> {{pedido.paciente.nombre}}, {{pedido.paciente.apellido}} </strong>
+  </p>
+  <p>Sub total: <strong>{{pedido.sub_total}}</strong></p>
+  <p>Método de pago: <strong>{{pedido.metodo_pago}}</strong></p>
+  <hr />
+  {% if pedido.productos %}
+  <strong>Productos en el pedido:</strong>
+  {% for prod in pedido.productos.all %}
+  <p>{{prod.nombre}} : {{prod.precio}}</p>
+  {% endfor %} {% endif %} {% if pedido.lentes %}
+  <strong>Lentes en el pedido:</strong>
+  <!---------->
+  {% for len in pedido.lentes.all %}
+  <p>{{len.nombre}} : {{len.precio}}</p>
+  {% endfor %} {% endif %}
+  <!---------->
+  <hr />
+  <p>Estado: <strong>{{pedido.estado}}</strong></p>
+  <strong>Cambiar estado del pedido:</strong>
+  <form action="{% url 'detalle_pedido' pedido.id %}" method="post">
+    {% csrf_token %}
+    <select class="form-control" name="estado">
+      <option>Pendiente</option>
+      <option>Pedido</option>
+      <option>Taller</option>
+    </select>
+    <button type="submit" class="btn btn-primary mt-2">Cambiar</button>
+  </form>
+</div>
+
+{% endblock %}

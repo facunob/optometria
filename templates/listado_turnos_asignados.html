@@ -1,0 +1,42 @@
+{% extends 'base.html' %}{% block body %}
+<form action="{% url 'listado_turnos_asignados' %}" method="post" class="col-8">
+  {% csrf_token %}
+  <h4 class="col-12 mb-1">Filtrar por fecha:</h4>
+  <select name="mes" class="col-10">
+    <option></option>
+    <option value="1">Enero</option>
+    <option value="02">Febrero</option>
+    <option value="3">Marzo</option>
+    <option value="4">Abril</option>
+    <option value="5">Mayo</option>
+    <option value="6">Junio</option>
+    <option value="7">Julio</option>
+    <option value="8">Agosto</option>
+    <option value="9">Septiembre</option>
+    <option value="10">Octubre</option>
+    <option value="11">Noviembre</option>
+    <option value="12">Diciembre</option>
+  </select>
+  <select name="anio" class="col-10 mb-1">
+    <option></option>
+    <option>2020</option>
+    <option>2021</option>
+    <option>2022</option>
+    <option>2023</option>
+    <option>2024</option>
+    <option>2025</option>
+  </select>
+  <button class="btn btn-primary col-4 mb-2" type="submit">Filtrar</button>
+</form>
+
+{% for turno in turnos %}
+<div class="col-10 shadow p-3 mb-5 rounded ml-2">
+  <p>{{turno.paciente}}</p>
+  <p>{{turno.fecha}}</p>
+  <a
+    class="btn btn-primary"
+    href="{% url 'listado_historial_medico' turno.paciente.id %}"
+    >Ver historial médico</a
+  >
+</div>
+{% endfor %} {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}{% block body %}
+<div>
+  <!---------------------->
+  <h3 class="col-12">Pacientes que compraron este mes</h3>
+
+  {% if pacientes_mes %}
+  <!---------------------->
+  <div class="col-12">
+    {% for x in pacientes_mes %}
+    <div class="col-10 mb-2 shadow p-3 mb-5 rounded">
+      <p>{{x.nombre}}, {{x.apellido}}</p>
+      <hr />
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No hubo pedidos este mes</p>
+
+  {% endif %}
+  <!---------------------->
+  <hr />
+  <h3>Pacientes que compraron en los últimos 7 días</h3>
+  {% if pacientes_semana %}
+  <!---------------------->
+
+  <div class="col-12">
+    {% for x in pacientes_semana %}
+    <div class="col-10 mb-2 shadow p-3 mb-5 rounded">
+      <p>{{x.nombre}}, {{x.apellido}}</p>
+      <hr />
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No hubo pedidos esta última semana</p>
+
+  {% endif %}
+</div>
+{% endblock %}

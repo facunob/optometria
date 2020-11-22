@@ -1,0 +1,23 @@
+{% extends 'base.html' %}{% block body %}
+
+<form method="POST" action="{% url 'crear_turno' %}" class="col-8 shadow p-3 mb-5 rounded">
+  {% csrf_token %} 
+  <label >Medico:</label>
+  <select name="medico" class="form-control">
+    {% for med in medicos %}
+    <option value="{{med.id}}">{{med.nombres}}, {{med.apellidos}}</option>
+    {% endfor %}
+  </select>
+  <label >Paciente:</label>
+  <select name="paciente" class="form-control">
+    {% for paciente in pacientes %}
+    <option value="{{paciente.id}}">{{paciente.nombre}}, {{paciente.apellido}}</option>
+    {% endfor %}
+  </select>
+  <label >Fecha:</label>
+  <input type="datetime-local" class="form-control" name="fecha">
+  <button type="submit" class="btn btn-success mt-2">Agregar turno</button>
+</form>
+
+  {% endblock %}
+</div>
